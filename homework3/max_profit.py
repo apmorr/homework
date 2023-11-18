@@ -4,22 +4,16 @@ def price_to_profit(prices):
 
 
 def max_profit_crossing(L, left, right, median):
-    max_left_sum = float('-inf')
-    max_right_sum = float('-inf')
+    least_buyL = L[median]
+    high_sellR = L[median + 1]
 
-    left_sum = 0
-    for i in range(median, left - 1, -1):
-        left_sum += L[i]
-        if left_sum > max_left_sum:
-            max_left_sum = left_sum
+    for i in range(median - 1, -1, -1):
+        least_buyL = min(Least_buyL, L[i])
+    
+    for i in range(median + 2, right + 1):
+        high_sellR = max(high_sellR, L[i])
 
-    right_sum = 0
-    for i in range(median + 1, right + 1):
-        right_sum += L[i]
-        if right_sum > max_right_sum:
-            max_right_sum = right_sum
-
-    return max_left_sum + max_right_sum
+    return high_sellR - least_buyL
 
 def max_profit(L, left, right):
     if left == right:
